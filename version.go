@@ -9,6 +9,17 @@ import (
 	bitset "github.com/skip2/go-qrcode/bitset"
 )
 
+var (
+	// the number of pixels of border space on each side of the QR Code
+	QuietZoneSize = 4
+)
+
+// SetQuietZoneSize set the number of pixels of border space on each side of
+// the QR Code.
+func SetQuietZoneSize(v int) {
+	QuietZoneSize = v
+}
+
 // Error detection/recovery capacity.
 //
 // There are several levels of error detection/recovery capacity. Higher levels
@@ -3034,7 +3045,7 @@ func (v qrCodeVersion) symbolSize() int {
 // quietZoneSize returns the number of pixels of border space on each side of
 // the QR Code. The quiet space assists with decoding.
 func (v qrCodeVersion) quietZoneSize() int {
-	return 4
+	return QuietZoneSize
 }
 
 // getQRCodeVersion returns the QR Code version by version number and recovery
